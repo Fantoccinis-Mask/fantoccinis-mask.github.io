@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Fantoccini's Mask: Proof Of Concept</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+
+    <!-- external styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/d550ee8263.js"
+      crossorigin
+    ></script>
+
+    <!-- local styles -->
+    <link rel="stylesheet" href="./styles.css" />
+
+    <!-- external scripts -->
+    <script src="https://gizmo-atheneum.github.io/structure/importnamespace/script.js"></script>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+    <!-- Gizmo Atheneum namespaces-->
+    <script type="text/babel" src="https://gizmo-atheneum.github.io/namespaces/ajax.js"></script>
+    <script type="text/babel" src="https://gizmo-atheneum.github.io/namespaces/point.js"></script>
+    <script type="text/babel" src="https://gizmo-atheneum.github.io/namespaces/paper-doll/dataset.js"></script>
+    <script type="text/babel" src="https://gizmo-atheneum.github.io/namespaces/react/paper-doll.js"></script>
+
+    <!-- local namespaces -->
+    <script type="text/babel" src="./scripts/workshop.js"></script>
+
+    <!-- bind app root -->
+    <script type="text/babel">
+      (function () {
+        const { ProofOfConcept } = imports({
+          'fm.poc.ProofOfConcept': 'ProofOfConcept',
+        });
+        const unusedNamespaces = listUnusedNamespaces();
+        if (unusedNamespaces.length > 0) {
+          console.warn({ unusedNamespaces });
+        }
+        ReactDOM.createRoot(document.getElementById('app-root')).render(
+          <ProofOfConcept />
+        );
+      })();
+    </script>
+  </head>
+  <body class="bg-dark text-light">
+    <div id="app-root" class="container"></div>
+  </body>
+</html>
