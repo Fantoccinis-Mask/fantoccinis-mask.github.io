@@ -2,10 +2,18 @@ namespace("fm.poc.ProofOfConcept", {}, () => {
   return class extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {};
+      this.state = {
+        bodyType: "woman"
+      };
+    }
+    afterRender() {
+      
     }
     render() {
-      return (<></>);
+      return (<>
+        { this.state.metadata && (<>
+        </>)}
+      </>);
     }
   };
 });

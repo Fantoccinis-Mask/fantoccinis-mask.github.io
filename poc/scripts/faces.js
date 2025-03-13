@@ -53,5 +53,17 @@ namespace("fm.poc.Faces", {}, () => {
   const buildForEachMouth = function(bodyType) {
     return ranges.mouth.map(mouth => buildSymetricalFace(bodyType, mouth, ranges.eyebrows[0], ranges.eyes[0]));
   }
-  return { bodyTypes, ranges, buildFace, buildSymetricalFace, buildForEachMouth };
+  const buildForAllSymetricalEyes = function(bodyType) {
+    return ranges.eyebrows.reduce((acc, eyebrow) => acc.concat(ranges.eyes.map(eye => buildSymetricalFace(bodyType, ranges.mouths[0], eyebrow, eye))), []);
+  }
+  const buildForAllMixedEyes = function(bodyType) {
+    return ranges.eyebrows.reduce((acc,leftEyebrow) => {
+      return acc.concat(ranges.eyebrows.reduce((acc, rightEyebrow) => {
+        return acc.concat(ranges.eyes.reduce((acc, leftEye) => {
+          return acc.concat(ranges.eyes.map(rightEye => buildFace(bodyType, ranges.mouths[0], rightEyebrow, leftEyebrow, rightEye, leftEye)));
+        }), acc);
+      }), acc);
+    }, []);
+  }
+  return { bodyTypes, ranges, buildFace, buildSymetricalFace, buildForEachMouth, buildForAllSymetricalEyes, buildForAllMixedEyes };
 });
